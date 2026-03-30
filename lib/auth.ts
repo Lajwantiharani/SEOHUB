@@ -39,10 +39,18 @@ type SessionPayload = {
   exp: number;
 };
 
+type RegisterUserInput = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+};
+
 const sessionCookieName = "seohub_session";
 const sessionDurationSeconds = 60 * 60 * 24 * 7;
 const resetDurationMs = 1000 * 60 * 30;
 const secret = process.env.AUTH_SECRET ?? "seohub-local-dev-secret-change-me";
+const invalidCredentialsError = "Invalid email or password.";
 
 function scryptAsync(password: string, salt: string, keyLength: number): Promise<Buffer> {
   return new Promise((resolve, reject) => {
@@ -108,18 +116,23 @@ function createSessionToken(payload: SessionPayload) {
 }
 
 function verifySessionToken(token: string): SessionPayload | null {
-  const [encoded, signature] = token.split(".");
-  if (!encoded || !signature) return null;
+  try {
+    const [encoded, signature] = token.split(".");
+    if (!encoded || !signature) return null;
 
-  const expected = sign(encoded);
-  if (signature.length !== expected.length) return null;
+    const expected = sign(encoded);
+    if (signature.length !== expected.length) return null;
 
-  const valid = timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
-  if (!valid) return null;
+    const valid = timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
+    if (!valid) return null;
 
-  const payload = JSON.parse(decodeBase64Url(encoded)) as SessionPayload;
-  if (payload.exp < Math.floor(Date.now() / 1000)) return null;
-  return payload;
+    // Invalid or tampered cookie payloads should fail closed instead of throwing.
+    const payload = JSON.parse(decodeBase64Url(encoded)) as SessionPayload;
+    if (payload.exp < Math.floor(Date.now() / 1000)) return null;
+    return payload;
+  } catch {
+    return null;
+  }
 }
 
 export async function getUsers(): Promise<StoredUser[]> {
@@ -128,12 +141,7 @@ export async function getUsers(): Promise<StoredUser[]> {
   return users.map(mapUser);
 }
 
-export async function registerUser(input: {
-  email: string;
-  firstName: string;
-  lastName: string;
-  password: string;
-}) {
+export async function registerUser(input: RegisterUserInput) {
   const collection = await getUsersCollection();
   const email = normalizeEmail(input.email);
   const existingUser = await collection.findOne({ email });
@@ -165,17 +173,17 @@ export async function authenticateUser(email: string, password: string) {
   const user = await collection.findOne({ email: normalizedEmail });
 
   if (!user) {
-    return { ok: false as const, error: "Invalid email or password." };
+    return { ok: false as const, error: invalidCredentialsError };
   }
 
   const computed = await hashPassword(password, user.salt);
   if (computed.length !== user.passwordHash.length) {
-    return { ok: false as const, error: "Invalid email or password." };
+    return { ok: false as const, error: invalidCredentialsError };
   }
 
   const valid = timingSafeEqual(Buffer.from(computed), Buffer.from(user.passwordHash));
   if (!valid) {
-    return { ok: false as const, error: "Invalid email or password." };
+    return { ok: false as const, error: invalidCredentialsError };
   }
 
   return { ok: true as const, user: mapUser(user) };
