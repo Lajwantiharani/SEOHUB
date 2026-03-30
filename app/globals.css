@@ -99,6 +99,52 @@ img {
     linear-gradient(180deg, #ffefc5 0%, #fff8e9 52%, #ffffff 100%);
 }
 
+.review-fade::before,
+.review-fade::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(1.5rem, 6vw, 5rem);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.review-fade::before {
+  left: 0;
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255, 250, 242, 0) 100%);
+}
+
+.review-fade::after {
+  right: 0;
+  background: linear-gradient(270deg, #ffffff 0%, rgba(255, 250, 242, 0) 100%);
+}
+
+.review-track {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  min-width: max-content;
+  white-space: nowrap;
+  gap: 1.25rem;
+  will-change: transform;
+  animation: review-scroll 34s linear infinite;
+}
+
+.review-track-reverse {
+  animation-direction: reverse;
+}
+
+@keyframes review-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 0.625rem));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -107,6 +153,11 @@ img {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .review-track,
+  .review-track-reverse {
+    animation: none !important;
   }
 }
 

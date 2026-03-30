@@ -1,29 +1,52 @@
-import Link from "next/link";
-import { navigation, siteConfig } from "@/content/site";
+﻿import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="container-shell py-10 md:py-14">
-      <div className="rounded-[2rem] border border-[rgba(36,22,79,0.08)] bg-[linear-gradient(180deg,#fff8ea_0%,#ffffff_100%)] p-7 shadow-[0_22px_52px_rgba(32,24,70,0.06)] md:grid md:grid-cols-[1fr_auto] md:items-end md:gap-8 md:p-10">
-        <div>
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#ffb300]">
-            {siteConfig.name}
+    <footer className="mt-10 pt-24 md:pt-28" style={{ backgroundColor: "#ffffff" }}>
+      <div className="container-shell md:px-6 lg:px-10">
+        <div className="grid gap-10 text-[#3a3470] md:grid-cols-[1.18fr_0.92fr_0.92fr_0.72fr] md:gap-8">
+          <p className="max-w-[21.5rem] text-[clamp(1.4rem,2vw,2.1rem)] font-medium leading-[1.6] tracking-[-0.01em]">
+            We are a results-driven SEO agency helping businesses grow their online visibility, increase organic
+            traffic, and drive measurable results through data-backed strategies.
           </p>
-          <p className="mt-4 max-w-2xl text-[clamp(1.6rem,3vw,2.4rem)] font-semibold leading-[1.08] tracking-[-0.04em] text-[#24164f]">
-            A modern starter for an SEO services brand that wants fast performance and full control in code.
-          </p>
+
+          <div className="space-y-2 text-[clamp(1.3rem,1.55vw,1.85rem)] font-normal leading-[1.6] md:justify-self-end">
+            <p className="mb-2 font-medium">Company</p>
+            <Link href="/" className="block">Home</Link>
+            <Link href="/about" className="block">About us</Link>
+            <Link href="/contact" className="block">Contact us</Link>
+            <Link href="/contact" className="block">Get a Quote</Link>
+          </div>
+
+          <div className="space-y-2 text-[clamp(1.3rem,1.55vw,1.85rem)] font-normal leading-[1.6] md:justify-self-end">
+            <p className="mb-2 font-medium">Internal Links</p>
+            <Link href="/blog" className="block">Blog</Link>
+            <Link href="/case-studies" className="block">Case-Study</Link>
+            <Link href="/contact" className="block">SEO Audit</Link>
+            <Link href="/services" className="block">Keyword Research</Link>
+          </div>
+
+          <div className="space-y-2 text-[clamp(1.3rem,1.55vw,1.85rem)] font-normal leading-[1.6] md:justify-self-end">
+            <p className="mb-2 font-medium">Social</p>
+            <a href="#" className="block">Facebook</a>
+            <a href="#" className="block">Instagram</a>
+            <a href="#" className="block">LinkedIn</a>
+            <a href="#" className="block">Twitter</a>
+          </div>
         </div>
-        <div className="mt-6 flex flex-wrap gap-3 md:mt-0 md:justify-end">
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-full border border-[rgba(36,22,79,0.10)] bg-white px-4 py-2.5 text-sm font-semibold text-[#4f4968] transition hover:bg-[#fff5d9] hover:text-[#24164f]"
-            >
-              {item.label}
-            </Link>
-          ))}
+
+        <div className="mt-14 grid gap-5 text-[clamp(1.2rem,1.3vw,1.55rem)] font-medium leading-[1.45] text-[#3a3470] md:grid-cols-[1.18fr_0.92fr_1.64fr] md:items-center md:gap-8">
+          <p>Office 433 85 Dunstall Hill, Wolverhampton</p>
+          <a href="mailto:info@seohubltd.com" className="md:justify-self-end">info@seohubltd.com</a>
+          <p className="md:justify-self-end">Copyright (c) 2026 SeoHub Ltd - All Rights Reserved.</p>
         </div>
+      </div>
+
+      <div className="px-3 pb-14 pt-20">
+        <p className="mx-auto w-full text-center text-[clamp(3rem,14vw,14rem)] font-black leading-[0.92] tracking-[-0.015em]">
+          <span className="text-[#ffb300]">SEO</span>
+          <span className="text-black">HUBLTD</span>
+        </p>
       </div>
     </footer>
   );
