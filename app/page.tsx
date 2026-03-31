@@ -471,29 +471,29 @@ export default function HomePage() {
           <p className="mx-auto w-fit rounded-full border border-[#d9d0ef] px-6 py-2 text-[0.88rem] font-semibold uppercase tracking-[0.02em] text-[#000000]">
             LATEST ARTICLES
           </p>
-          <h2 className="mx-auto mt-5 max-w-[760px] text-center text-[clamp(2.3rem,4.2vw,4rem)] font-semibold leading-[1.12] tracking-[-0.03em] text-[#000000]">
+          <h2 className="mx-auto mt-5 max-w-[720px] text-center text-[clamp(2.2rem,4vw,3.7rem)] font-semibold leading-[1.14] tracking-[-0.04em] text-[#000000]">
             Get expert insights
             <br />
             &amp; SEO strategies from our blog
           </h2>
-          <p className="mx-auto mt-4 max-w-[760px] text-center text-[clamp(0.98rem,1.05vw,1.1rem)] font-medium text-[#000000]">
+          <p className="mx-auto mt-4 max-w-[700px] text-center text-[0.95rem] font-medium text-[#5f5a73]">
             Actionable tips, trends, and guides to help you grow your traffic and rank higher on search engines
           </p>
 
-          <div className="mt-10 grid gap-4 lg:grid-cols-[1.02fr_0.98fr]">
-            <article className="overflow-hidden rounded-[1.55rem] border border-[#e1dcef] bg-white shadow-[0_4px_12px_rgba(44,31,116,0.05)]">
-              <div className="w-full">
+          <div className="mx-auto mt-10 grid max-w-[960px] gap-4 lg:grid-cols-[1.04fr_0.96fr]">
+            <article className="overflow-hidden rounded-[1.45rem] border border-[#eee6f7] bg-white p-3 shadow-[0_6px_18px_rgba(85,63,145,0.06)]">
+              <div className="w-full overflow-hidden rounded-[1.2rem]">
                 <Image
                   src="/latest-article-main.webp"
                   alt="How to increase organic traffic in 2025"
                   width={518}
                   height={338}
                   sizes="(max-width: 1024px) 100vw, 590px"
-                  className="h-[240px] w-full object-cover sm:h-[290px] lg:h-[338px]"
+                  className="h-[240px] w-full object-cover sm:h-[280px] lg:h-[300px]"
                 />
               </div>
-              <div className="p-4">
-                <h3 className="text-[clamp(1.55rem,2vw,2.1rem)] font-semibold leading-[1.18] tracking-[-0.02em] text-[#000000]">
+              <div className="px-1 pb-1 pt-4">
+                <h3 className="text-[clamp(1.45rem,1.7vw,1.95rem)] font-semibold leading-[1.16] tracking-[-0.03em] text-[#000000]">
                   How to increase organic traffic in 2025
                 </h3>
                 <p className="mt-3 text-[clamp(0.92rem,0.95vw,1rem)] font-semibold text-[#000000]">Sep 24, 2024   -   5 min read</p>
@@ -502,8 +502,8 @@ export default function HomePage() {
 
             <div className="grid gap-4">
               {sideArticles.map((article) => (
-                <article key={article.title} className="grid grid-cols-[116px_minmax(0,1fr)] items-center rounded-[1.45rem] border border-[#efe7f7] bg-white p-3 shadow-[0_4px_12px_rgba(44,31,116,0.05)] sm:grid-cols-[168px_minmax(0,1fr)] sm:gap-4 sm:p-4 md:p-[18px]">
-                  <div className="relative h-[116px] w-[116px] overflow-hidden rounded-[0.95rem] sm:h-[156px] sm:w-[168px] sm:rounded-[1rem]">
+                <article key={article.title} className="grid grid-cols-[116px_minmax(0,1fr)] items-center rounded-[1.45rem] border border-[#eee6f7] bg-white p-3 shadow-[0_6px_18px_rgba(85,63,145,0.06)] sm:grid-cols-[148px_minmax(0,1fr)] sm:gap-4 sm:p-4 md:p-[16px]">
+                  <div className="relative h-[116px] w-[116px] overflow-hidden rounded-[0.95rem] sm:h-[150px] sm:w-[148px] sm:rounded-[1rem]">
                     <Image
                       src={article.image}
                       alt={article.alt}
@@ -513,11 +513,11 @@ export default function HomePage() {
                       className="h-full w-full object-cover"
                     />
                   </div>
-                  <div className="min-w-0 pl-3 sm:mt-0 sm:max-w-[255px] sm:pl-0">
-                    <h3 className={`text-[clamp(1.05rem,1.5vw,1.78rem)] font-semibold leading-[1.12] tracking-[-0.025em] ${article.titleClassName}`}>
+                  <div className="min-w-0 pl-3 sm:mt-0 sm:max-w-[270px] sm:pl-0">
+                    <h3 className={`text-[clamp(1.05rem,1.35vw,1.45rem)] font-semibold leading-[1.16] tracking-[-0.03em] ${article.titleClassName}`}>
                       {article.title}
                     </h3>
-                    <p className="mt-2 text-[0.93rem] leading-[1.5] text-[#69657a] sm:mt-3 sm:text-[clamp(0.95rem,0.96vw,1rem)]">
+                    <p className="mt-2 text-[0.9rem] leading-[1.6] text-[#69657a] sm:mt-3 sm:text-[0.96rem]">
                       {article.description}
                     </p>
                     <p className="mt-2 text-[0.9rem] font-semibold text-[#000000] sm:mt-3 sm:text-[0.98rem]">{article.date}</p>
