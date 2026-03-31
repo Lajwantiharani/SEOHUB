@@ -161,3 +161,36 @@ img {
   }
 }
 
+.team-fade::before,
+.team-fade::after {
+  display: none;
+}
+
+.team-track {
+  --team-card-gap: 1.35rem;
+  --team-card-width: 220px;
+  display: inline-flex;
+  align-items: stretch;
+  gap: var(--team-card-gap);
+  min-width: max-content;
+  will-change: transform;
+}
+
+@media (min-width: 640px) {
+  .team-track {
+    --team-card-width: 240px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .team-track {
+    --team-card-width: 230px;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .team-track {
+    animation: none !important;
+  }
+}

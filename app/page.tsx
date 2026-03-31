@@ -1,8 +1,9 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { CtaBand } from "@/components/cta-band";
 import { Hero } from "@/components/hero";
 import { ReviewsMarquee } from "@/components/reviews-marquee";
+import { TeamCarousel } from "@/components/team-carousel";
 import { homepageHighlightStats } from "@/content/site";
 
 const popularServices = [
@@ -75,7 +76,7 @@ const sideArticles = [
     title: "Top SEO strategies to rank higher on Google",
     description:
       "Discover actionable techniques to improve your search rankings, from on-page SEO to link-building and performance optimization.",
-    date: "Aug 17, 2024 • 5 min read",
+    date: "Aug 17, 2024  -  5 min read",
     image: "/latest-article-top-v2.webp",
     alt: "Top SEO strategies to rank higher on Google",
     titleClassName: "text-[#000000]"
@@ -84,7 +85,7 @@ const sideArticles = [
     title: "10 essential SEO tips for better rankings",
     description:
       "A quick guide covering the most important SEO practices to help your website gain visibility and attract more visitors.",
-    date: "Sep 14, 2024 • 5 min read",
+    date: "Sep 14, 2024  -  5 min read",
     image: "/latest-article-bottom-v2.webp",
     alt: "10 essential SEO tips for better rankings",
     titleClassName: "text-[#000000]"
@@ -98,16 +99,16 @@ export default function HomePage() {
 
       <section className="flex justify-center px-4 py-10 md:py-12">
         <div className="w-full max-w-[1160px]">
-          <div className="rounded-[2.2rem] bg-[#0d0c1a] px-[3px] py-[3px] shadow-[0_28px_60px_rgba(5,4,10,0.55)]">
-            <div className="grid overflow-hidden rounded-[1.8rem] bg-[#0f0d23] lg:grid-cols-[320px_1fr]">
-              <div className="rounded-[1.7rem] bg-[#ffb300] px-6 py-5 text-[#fffdf7] shadow-[0_18px_32px_rgba(255,176,0,0.2)] lg:ml-2 lg:pl-7 lg:pr-9 lg:py-4">
+          <div className="rounded-[2.2rem] bg-[#0d0c1a] p-4 shadow-[0_28px_60px_rgba(5,4,10,0.55)] md:p-5">
+            <div className="grid items-stretch gap-4 rounded-[1.8rem] bg-[#0f0d23] lg:grid-cols-[320px_1fr]">
+              <div className="h-full rounded-[1.7rem] bg-[#ffb300] px-6 py-6 text-[#fffdf7] shadow-[0_18px_32px_rgba(255,176,0,0.2)] md:px-7 md:py-7">
                 <p className="text-5xl font-black tracking-[-0.06em]">{homepageHighlightStats.featured.value}</p>
                 <h2 className="mt-2 text-[2rem] font-semibold tracking-[-0.05em]">{homepageHighlightStats.featured.title}</h2>
                 <p className="mt-3 text-[14px] leading-7 text-[rgba(255,253,247,0.94)]">
                   {homepageHighlightStats.featured.description}
                 </p>
               </div>
-              <div className="grid w-full gap-0 px-6 py-7 text-white md:px-8 md:py-9 lg:grid-cols-3">
+              <div className="grid w-full gap-0 px-6 py-6 text-white md:px-8 md:py-7 lg:grid-cols-3">
                 {homepageHighlightStats.items.map((item) => (
                   <div key={item.value} className="flex flex-col gap-3 border-b border-[rgba(255,255,255,0.08)] pb-6 last:border-b-0 lg:border-b-0 lg:border-l lg:border-[rgba(255,255,255,0.08)] lg:pb-0 lg:pl-6 lg:pt-0">
                     <p className="text-[2.6rem] font-black tracking-[-0.04em] md:text-[3rem]">
@@ -495,7 +496,7 @@ export default function HomePage() {
                 <h3 className="text-[clamp(1.55rem,2vw,2.1rem)] font-semibold leading-[1.18] tracking-[-0.02em] text-[#000000]">
                   How to increase organic traffic in 2025
                 </h3>
-                <p className="mt-3 text-[clamp(0.92rem,0.95vw,1rem)] font-semibold text-[#000000]">Sep 24, 2024  •  5 min read</p>
+                <p className="mt-3 text-[clamp(0.92rem,0.95vw,1rem)] font-semibold text-[#000000]">Sep 24, 2024   -   5 min read</p>
               </div>
             </article>
 
@@ -528,12 +529,16 @@ export default function HomePage() {
         </div>
       </section>
 
+      <TeamCarousel />
+
       <section className="defer-section">
         <CtaBand />
       </section>
     </main>
   );
 }
+
+
 
 
 
